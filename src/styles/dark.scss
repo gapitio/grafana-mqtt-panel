@@ -1,0 +1,17 @@
+@import '../../node_modules/@grafana/toolkit/sass/_variables.dark.scss';
+@import '../../node_modules/@grafana/toolkit/sass/_variables.scss';
+
+.live-data-panel {
+    text-align: center;
+    height: 100%;
+}
+
+.live-data-panel label {
+    position: relative;
+    top: 50%;
+    color: $gray-4;
+    vertical-align: middle;
+    font-size: $font-size-h1;
+    font-weight: bold;
+    font-family: $font-family-sans-serif;
+}
