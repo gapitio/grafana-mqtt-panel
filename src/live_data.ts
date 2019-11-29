@@ -22,6 +22,23 @@ class LiveData extends MetricsPanelCtrl {
         this.subscribed = [];
         this.value = 'Waiting for response';
 
+        const PANEL_DEFAULT = {
+            format: 'locale',
+            mqtt: {
+                mode: 'Recieve',
+                login: {
+                    hostname: 'localhost',
+                    port: '9001'
+                },
+                topic: 'data',
+                publish: {
+                    value: 'Hello'
+                }
+            }
+        }
+
+        _.defaults(this.panel, PANEL_DEFAULT);
+
         this.events.on('init-edit-mode', this.onInitEditMode.bind(this));
 
         this.updateMQTTClient();
@@ -29,21 +46,31 @@ class LiveData extends MetricsPanelCtrl {
 
     updateMQTTClient() {
         if (this.mqttClient) this.mqttClient.end();
-        console.log(this);
 
         let mqttLoginDict = {};
-        Object.assign(mqttLoginDict, this.panel.mqtt.login)
-
-        this.mqttClient = connect(mqttLoginDict);
-
-        this.mqttClient.on('connect', () => this.mqttClient.subscribe(this.panel.mqtt.topic));
-
-        this.mqttClient.on('message', (topic: any, message: any) => {
-            this.data = message.toString();
-            this.value = this.formatValue(this.data);
-            this.refresh();
+        Object.assign(mqttLoginDict, {
+            hostname: this.panel.mqtt.login.hostname,
+            port: this.panel.mqtt.login.port
         });
+
+        if (![...Object.keys(mqttLoginDict), this.panel.mqtt.topic].includes('')) {
+            this.mqttClient = connect(mqttLoginDict);
+
+            this.mqttClient.on('connect', () => this.mqttClient.subscribe(this.panel.mqtt.topic));
+
+            this.mqttClient.on('message', (topic: any, message: any) => {
+                this.data = message.toString();
+                this.value = this.formatValue(this.data);
+                this.refresh();
+            });
+        }
     };
+
+    onPublish() {
+        if (this.mqttClient && this.mqttClient.connected && this.panel.mqtt.topic != '') {
+            this.mqttClient.publish(this.panel.mqtt.topic, this.panel.mqtt.publish.value);
+        };
+    }
 
     onInitEditMode() {
         this.addEditorTab('Options', 'public/plugins/gapit-live_data-panel/editor.html', 2);

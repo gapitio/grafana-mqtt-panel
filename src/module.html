@@ -1,3 +1,8 @@
 <div class="live-data-panel">
-    <label>{{ ctrl.value }}</label>
+    <label ng-if="ctrl.panel.mqtt.mode == 'Recieve'">{{ ctrl.value }}</label>
+    <div ng-if="ctrl.panel.mqtt.mode == 'Publish'">
+        <input type="text" ng-model="ctrl.panel.mqtt.publish.value" ng-keyup="$event.keyCode == 13 ? ctrl.onPublish() : null"></input>
+        <br><br>
+        <button ng-click="ctrl.onPublish()">Publish</button>
+    </div>
 </div>
