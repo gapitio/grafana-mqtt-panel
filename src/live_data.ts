@@ -61,7 +61,11 @@ class LiveData extends MetricsPanelCtrl {
             this.mqttClient.on('message', (topic: any, message: any) => {
                 this.data = message.toString();
                 this.value = this.formatValue(this.data);
-                this.refresh();
+                const PANEL_ELT = document.getElementById(`panel-${this.panel.id}`);
+                if (PANEL_ELT) {
+                    const VALUE_ELTS = PANEL_ELT.getElementsByClassName('live-data-value')
+                    if (VALUE_ELTS.length > 0) VALUE_ELTS[0].textContent = this.value
+                };
             });
         }
     };

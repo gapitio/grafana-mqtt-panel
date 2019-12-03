@@ -1,5 +1,5 @@
 <div class="live-data-panel">
-    <label ng-if="ctrl.panel.mqtt.mode == 'Recieve'">{{ ctrl.value }}</label>
+    <label class='live-data-value' ng-if="ctrl.panel.mqtt.mode == 'Recieve'">{{ ctrl.value }}</label>
     <div ng-if="ctrl.panel.mqtt.mode == 'Publish'">
         <input type="text" ng-model="ctrl.panel.mqtt.publish.value" ng-keyup="$event.keyCode == 13 ? ctrl.onPublish() : null"></input>
         <br><br>
