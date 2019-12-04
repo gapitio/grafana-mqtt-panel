@@ -1,0 +1,7 @@
+@import '../../node_modules/@grafana/toolkit/sass/_variables.light.scss';
+@import 'base';
+
+
+.live-data-panel input {
+    border-color: $input-border-color;
+}

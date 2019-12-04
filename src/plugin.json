@@ -1,0 +1,21 @@
+{
+    "type": "panel",
+    "name": "Live data",
+    "id": "gapit-live_data-panel",
+
+    "info": {
+        "description": "Live data",
+        "author": {
+            "name": "Gapit",
+            "url": "https://gapit.io"
+        },
+        "keywords": ["live_data", "panel"],
+        "version": "1.0",
+        "updated": "1.0"
+    },
+
+    "dependencies": {
+        "grafanaVersion": "4.6",
+        "plugins": []
+    }
+}

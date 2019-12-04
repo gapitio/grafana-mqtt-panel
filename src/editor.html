@@ -1,0 +1,64 @@
+<div class="editor-row">
+    <div class="section gf-form-group">
+        <h5 class="section-heading">General</h5>
+        <div class="gf-form">
+            <span class="gf-form-label width-8">Mqtt mode</span>
+            <div class="gf-form-select-wrapper width-10">
+                <select class="gf-form-input" ng-model="ctrl.panel.mqtt.mode"
+                    ng-options="t for t in ['Recieve', 'Publish']" ng-change="ctrl.render()"></select>
+            </div>
+        </div>
+        <div class="gf-form">
+            <span class="gf-form-label width-8">Unit</span>
+            <div class="gf-form-dropdown-typeahead width-10" ng-model="ctrl.panel.format"
+                dropdown-typeahead="ctrl.unitFormats" dropdown-typeahead-on-select="ctrl.setUnitFormat($subItem)">
+            </div>
+        </div>
+    </div>
+
+    <div class="section gf-form-group">
+        <h5 class="section-heading">Login</h5>
+        <gf-form-switch class="gf-form" label-class="width-8" label="Show" checked="ctrl.panel.mqtt.show"
+            on-change="ctrl.render()">
+        </gf-form-switch>
+
+        <form name="mqttForm">
+            <div class="gf-form">
+                <span class="gf-form-label width-8">host</span>
+                <input type="text" class="gf-form-input max-width-10" ng-model="ctrl.panel.mqtt.login.hostname"
+                    ng-change="ctrl.render()" name="hostname" required>
+            </div>
+            <div class="gf-form">
+                <span class="gf-form-label width-8">port</span>
+                <input type="number" class="gf-form-input max-width-10" ng-model="ctrl.panel.mqtt.login.port"
+                    ng-change="ctrl.render()" name="port" required>
+            </div>
+            <br>
+            <div class="gf-form">
+                <span class="gf-form-label width-8">Username</span>
+                <input type="text" class="gf-form-input max-width-10" ng-model="ctrl.panel.mqtt.login.username"
+                    ng-change="ctrl.render()">
+            </div>
+            <div class="gf-form">
+                <span class="gf-form-label width-8">Password</span>
+                <input type="text" class="gf-form-input max-width-10" ng-model="ctrl.panel.mqtt.login.password"
+                    ng-change="ctrl.render()">
+            </div>
+            <br>
+            <div class="gf-form">
+                <span class="gf-form-label width-8">Topic</span>
+                <input type="text" class="gf-form-input max-width-10" ng-model="ctrl.panel.mqtt.topic"
+                    ng-change="ctrl.render()" name="topic" required>
+            </div>
+        </form>
+
+        <br>
+        <div class="gf-form">
+            <button type="text" class="gf-form-input max-width-18 connect-button" ng-model="ctrl.panel.random"
+                ng-click="ctrl.render(); ctrl.updateMQTTClient();" ng-mouseenter="this.style.opacity = '0.7'"
+                ng-mouseleave="this.style.opacity = '1'"
+                ng-disabled="!mqttForm.hostname.$valid || !mqttForm.port.$valid || !mqttForm.topic.$valid"
+                >{{ctrl.mqttConnection.status}}</button>
+        </div>
+    </div>
+</div>
