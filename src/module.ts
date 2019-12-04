@@ -3,7 +3,7 @@ import { loadPluginCss } from 'grafana/app/plugins/sdk';
 
 loadPluginCss({
     dark: 'plugins/gapit-live_data-panel/styles/dark.css',
-    light: 'plugins/grafana-live-data/styles/light.css',
+    light: 'plugins/gapit-live_data-panel/styles/light.css',
 });
 
 export { LiveData as PanelCtrl };

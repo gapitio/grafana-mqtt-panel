@@ -14,6 +14,7 @@ class LiveData extends MetricsPanelCtrl {
     data: any;
     mqttClient: any;
     subscribed: any;
+    mqttConnection: any;
 
     /** @ngInject */
     constructor($scope: any, $injector: any, $rootScope: any) {
@@ -21,19 +22,24 @@ class LiveData extends MetricsPanelCtrl {
         this.$rootScope = $rootScope;
         this.subscribed = [];
         this.value = 'Waiting for response';
+        this.mqttConnection = {
+            message: '',
+            status: 'Connect'
+        }
 
         const PANEL_DEFAULT = {
             format: 'locale',
             mqtt: {
                 mode: 'Recieve',
                 login: {
-                    hostname: 'localhost',
-                    port: '9001'
+                    hostname: '',
+                    port: 9001
                 },
                 topic: 'data',
                 publish: {
                     value: 'Hello'
-                }
+                },
+                show: true
             }
         }
 
@@ -45,26 +51,51 @@ class LiveData extends MetricsPanelCtrl {
     }
 
     updateMQTTClient() {
+        const PANEL_ELT = document.getElementById(`panel-${this.panel.id}`);
+
         if (this.mqttClient) this.mqttClient.end();
 
-        let mqttLoginDict = {};
-        Object.assign(mqttLoginDict, {
+        const MQTT_LOGIN_DICT = {
             hostname: this.panel.mqtt.login.hostname,
             port: this.panel.mqtt.login.port
-        });
+        };
 
-        if (![...Object.keys(mqttLoginDict), this.panel.mqtt.topic].includes('')) {
-            this.mqttClient = connect(mqttLoginDict);
+        const SET_CONNECTION_STATUS = (message: any, hostname: any, port: any, topic: any, status: any) => {
+            this.mqttConnection.message = `${message} ${hostname}:${port}/${topic}`
+            this.mqttConnection.status = status;
 
-            this.mqttClient.on('connect', () => this.mqttClient.subscribe(this.panel.mqtt.topic));
+            const MQTT_CONNECTION_ELT: any = PANEL_ELT ? PANEL_ELT.getElementsByClassName('mqtt-connection') ? PANEL_ELT.getElementsByClassName('mqtt-connection').length > 0 ? PANEL_ELT.getElementsByClassName('mqtt-connection')[0] : null : null : null;
+            if (MQTT_CONNECTION_ELT) MQTT_CONNECTION_ELT.textContent = this.mqttConnection.message
+
+            const MQTT_CONNECT_ELT: any = PANEL_ELT ? PANEL_ELT.getElementsByClassName('connect-button') ? PANEL_ELT.getElementsByClassName('connect-button').length > 0 ? PANEL_ELT.getElementsByClassName('connect-button')[0] : null : null : null;
+            if (MQTT_CONNECT_ELT) MQTT_CONNECT_ELT.textContent = this.mqttConnection.status
+        }
+
+        if (![...Object.values(MQTT_LOGIN_DICT), this.panel.mqtt.topic].includes('')) {
+            SET_CONNECTION_STATUS('Preparing to connect to', MQTT_LOGIN_DICT.hostname, MQTT_LOGIN_DICT.port, this.panel.mqtt.topic, 'Connecting');
+
+            this.mqttClient = connect(MQTT_LOGIN_DICT);
+
+            SET_CONNECTION_STATUS('Connecting to', this.mqttClient.options.hostname, this.mqttClient.options.port, this.panel.mqtt.topic, 'Connecting');
+
+            this.mqttClient.on('connect', () => {
+                this.mqttClient.subscribe(this.panel.mqtt.topic, () => {
+                    const TOPICS: any = Object.values(this.mqttClient.messageIdToTopic)[0];
+                    if (TOPICS && TOPICS.length > 0) this.mqttClient.topic = TOPICS[0];
+                    SET_CONNECTION_STATUS('Successfully connected to', this.mqttClient.options.hostname, this.mqttClient.options.port, this.mqttClient.topic, 'Connected');
+                });
+            });
+
+            this.mqttClient.stream.on('error', (err: any) => {
+                SET_CONNECTION_STATUS('Failed connecting to', this.mqttClient.options.hostname, this.mqttClient.options.port, this.mqttClient.topic || this.panel.mqtt.topic, 'Failed');
+            });
 
             this.mqttClient.on('message', (topic: any, message: any) => {
                 this.data = message.toString();
                 this.value = this.formatValue(this.data);
-                const PANEL_ELT = document.getElementById(`panel-${this.panel.id}`);
                 if (PANEL_ELT) {
-                    const VALUE_ELTS = PANEL_ELT.getElementsByClassName('live-data-value')
-                    if (VALUE_ELTS.length > 0) VALUE_ELTS[0].textContent = this.value
+                    const VALUE_ELTS = PANEL_ELT.getElementsByClassName('live-data-value');
+                    if (VALUE_ELTS && VALUE_ELTS.length > 0) VALUE_ELTS[0].textContent = this.value;
                 };
             });
         }
