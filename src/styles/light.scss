@@ -1,29 +1,7 @@
 @import '../../node_modules/@grafana/toolkit/sass/_variables.light.scss';
-@import '../../node_modules/@grafana/toolkit/sass/_variables.scss';
+@import 'base';
 
-.live-data-panel {
-    text-align: center;
-    height: 100%;
-}
 
-.live-data-panel label {
-    position: relative;
-    top: calc(50% - #{$font-size-h1});
-    color: $gray-1;
-    font-size: $font-size-h1;
-    font-weight: bold;
-    font-family: $font-family-sans-serif;
-}
-
-.live-data-panel div {
-    position: relative;
-    top: calc(50% - #{$font-size-h1});
-}
-
-.live-data-panel button {
-    color: $dark-1;
-    background: $btn-inverse-bg;
-    padding: 6px 18px;
-    border: solid 2px $dark-4;
-    border-radius: 2px;
+.live-data-panel input {
+    border-color: $input-border-color;
 }
