@@ -10,8 +10,8 @@
             "url": "https://gapit.io"
         },
         "keywords": ["live_data", "panel"],
-        "version": "1.0",
-        "updated": "1.0"
+        "version": "0.2.0",
+        "updated": "0.2.0"
     },
 
     "dependencies": {
