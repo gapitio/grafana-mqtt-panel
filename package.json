@@ -12,6 +12,7 @@
     "dependencies": {
         "angular": "^1.7.9",
         "flot": "^3.2.9",
+        "highcharts": "^7.2.1",
         "jquery": "^3.4.1",
         "jquery.flot": "^0.8.3",
         "lodash": "^4.17.15",
