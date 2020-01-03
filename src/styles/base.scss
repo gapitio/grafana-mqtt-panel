@@ -1,6 +1,5 @@
 @import '../../node_modules/@grafana/toolkit/sass/_variables.scss';
 
-
 .live-data-panel {
     text-align: center;
     height: 100%;
@@ -13,7 +12,7 @@
 
 .live-data-panel div {
     position: relative;
-    top: calc(50% - #{$font-size-h1});
+    // top: calc(50% - #{$font-size-h1});
 }
 
 .live-data-panel button {
@@ -31,12 +30,24 @@
     padding: $input-padding;
     height: $input-height;
     font-size: $font-size-h3;
+    width: 100%;
 }
 
 .live-data-value {
+    display: inline-block;
     top: calc(50% - #{$font-size-h1});
     font-size: 30.4px;
     font-weight: $font-weight-semi-bold;
+    position: absolute;
+}
+
+.live-data-value-gauge {
+    display: inline-block;
+    font-size: 30.4px;
+    font-weight: $font-weight-semi-bold;
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 30px);
 }
 
 .live-data-panel .mqtt-connection {
@@ -45,8 +56,26 @@
     position: absolute;
 }
 
+.recieve-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+.publish-container {
+    position: absolute;
+    display: inline-block;
+    top: 40%;
+    transform: translateY(-50%);
+}
+
 input.ng-invalid {
     border-style: groove;
     border-width: 1px;
     border-color: red;
+}
+
+.highcharts-label span {
+    font-size: $font-size-h1;
 }
