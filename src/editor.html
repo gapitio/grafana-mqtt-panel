@@ -5,7 +5,7 @@
             <span class="gf-form-label width-8">Mqtt mode</span>
             <div class="gf-form-select-wrapper width-10">
                 <select class="gf-form-input" ng-model="ctrl.panel.mqtt.mode"
-                    ng-options="t for t in ['Recieve', 'Publish']" ng-change="ctrl.render()"></select>
+                    ng-options="i for i in ['Recieve', 'Publish']" ng-change="ctrl.render()"></select>
             </div>
         </div>
         <div class="gf-form">
@@ -59,6 +59,17 @@
                 ng-mouseleave="this.style.opacity = '1'"
                 ng-disabled="!mqttForm.hostname.$valid || !mqttForm.port.$valid || !mqttForm.topic.$valid"
                 >{{ctrl.mqttConnection.status}}</button>
+        </div>
+    </div>
+
+    <div class="section gf-form-group">
+        <h5 class="section-heading">Design</h5>
+        <div class="gf-form">
+            <span class="gf-form-label width-8">Type</span>
+            <div class="gf-form-select-wrapper width-10">
+                <select class="gf-form-input" ng-model="ctrl.panel.design.type"
+                    ng-options="i for i in ['Text', 'Gauge']" ng-change="ctrl.render()"></select>
+            </div>
         </div>
     </div>
 </div>
