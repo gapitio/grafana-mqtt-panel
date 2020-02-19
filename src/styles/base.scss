@@ -1,81 +1,81 @@
 @import '../../node_modules/@grafana/toolkit/sass/_variables.scss';
 
-.live-data-panel {
-    text-align: center;
-    height: 100%;
-    font-family: $font-family-sans-serif;
+.mqtt-panel {
+  text-align: center;
+  height: 100%;
+  font-family: $font-family-sans-serif;
 }
 
-.live-data-panel label {
-    position: relative;
+.mqtt-panel label {
+  position: relative;
 }
 
-.live-data-panel div {
-    position: relative;
-    // top: calc(50% - #{$font-size-h1});
+.mqtt-panel div {
+  position: relative;
+  // top: calc(50% - #{$font-size-h1});
 }
 
-.live-data-panel button {
-    padding: 6px 18px;
-    border-width: 2px;
-    border-style: solid;
-    border-radius: 2px;
+.mqtt-panel button {
+  padding: 6px 18px;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 2px;
 }
 
-.live-data-panel input {
-    border-width: 1px;
-    border-style: solid;
-    border-radius: $input-border-radius;
-    text-align: center;
-    padding: $input-padding;
-    height: $input-height;
-    font-size: $font-size-h3;
-    width: 100%;
+.mqtt-panel input {
+  border-width: 1px;
+  border-style: solid;
+  border-radius: $input-border-radius;
+  text-align: center;
+  padding: $input-padding;
+  height: $input-height;
+  font-size: $font-size-h3;
+  width: 100%;
 }
 
-.live-data-value {
-    display: inline-block;
-    top: calc(50% - #{$font-size-h1});
-    font-size: 30.4px;
-    font-weight: $font-weight-semi-bold;
-    position: absolute;
+.mqtt-value {
+  display: inline-block;
+  top: calc(50% - #{$font-size-h1});
+  font-size: 30.4px;
+  font-weight: $font-weight-semi-bold;
+  position: absolute;
 }
 
-.live-data-value-gauge {
-    display: inline-block;
-    font-size: 30.4px;
-    font-weight: $font-weight-semi-bold;
-    position: absolute;
-    width: 100%;
-    height: calc(100% - 30px);
+.mqtt-value-gauge {
+  display: inline-block;
+  font-size: 30.4px;
+  font-weight: $font-weight-semi-bold;
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 30px);
 }
 
-.live-data-panel .mqtt-connection {
-    right: 2%;
-    bottom: 2%;
-    position: absolute;
+.mqtt-panel .mqtt-connection {
+  right: 2%;
+  bottom: 2%;
+  position: absolute;
 }
 
 .recieve-container {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-    height: 100%;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
 }
 
 .publish-container {
-    position: absolute;
-    display: inline-block;
-    top: 40%;
-    transform: translateY(-50%);
+  position: absolute;
+  display: inline-block;
+  top: 40%;
+  transform: translateY(-50%);
 }
 
 input.ng-invalid {
-    border-style: groove;
-    border-width: 1px;
-    border-color: red;
+  border-style: groove;
+  border-width: 1px;
+  border-color: red;
 }
 
 .highcharts-label span {
-    font-size: $font-size-h1;
+  font-size: $font-size-h1;
 }

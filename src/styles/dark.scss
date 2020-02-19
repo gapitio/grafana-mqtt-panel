@@ -1,20 +1,20 @@
 @import '../../node_modules/@grafana/toolkit/sass/_variables.dark.scss';
 @import 'base';
 
-.live-data-panel input {
-    border-color: $input-border-color;
+.mqtt-panel input {
+  border-color: $input-border-color;
 }
 
-.live-data-panel label {
-    color: $gray-4;
+.mqtt-panel label {
+  color: $gray-4;
 }
 
-.live-data-panel button {
-    color: $gray-4;
-    background: $btn-inverse-bg;
-    border-color: $dark-2;
+.mqtt-panel button {
+  color: $gray-4;
+  background: $btn-inverse-bg;
+  border-color: $dark-2;
 }
 
 .highcharts-label span {
-    color: $gray-4;
+  color: $gray-4;
 }
