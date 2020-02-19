@@ -1,7 +1,7 @@
 {
-    "name": "gapit-live_data-panel",
+    "name": "gapit-mqtt-panel",
     "version": "0.2.0",
-    "description": "Live data",
+    "description": "Publish and recieve data by MQTT",
     "scripts": {
         "build": "grafana-toolkit plugin:build",
         "test": "grafana-toolkit plugin:test",

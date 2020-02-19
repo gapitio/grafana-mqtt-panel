@@ -3,7 +3,7 @@ grafana:
     ports:
         - "3000:3000"
     volumes:
-        - ./:/var/lib/grafana/plugins/gapit-live_data-panel
+        - ./:/var/lib/grafana/plugins/gapit-mqtt-panel
         - ./provisioning:/etc/grafana/provisioning
     environment:
         - TERM=linux

@@ -1,9 +1,9 @@
-import { LiveData } from './live_data';
+import { Main } from './main';
 import { loadPluginCss } from 'grafana/app/plugins/sdk';
 
 loadPluginCss({
-  dark: 'plugins/gapit-live_data-panel/styles/dark.css',
-  light: 'plugins/gapit-live_data-panel/styles/light.css',
+    dark: 'plugins/gapit-mqtt-panel/styles/dark.css',
+    light: 'plugins/gapit-mqtt-panel/styles/light.css',
 });
 
-export { LiveData as PanelCtrl };
+export { Main as PanelCtrl };
