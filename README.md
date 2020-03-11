@@ -1,10 +1,10 @@
-# grafana live data
+# Hrafana MQTT panel
 
-- [grafana live data](#grafana-live-data)
-  - [Live data](#live-data)
+- [Hrafana MQTT panel](#hrafana-mqtt-panel)
+  - [MQTT panel](#mqtt-panel)
   - [Build project](#build-project)
 
-## Live data
+## MQTT panel
 
 - Gets messages from mqtt and displays it to the panel
 

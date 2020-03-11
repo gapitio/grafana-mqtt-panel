@@ -1,8 +1,9 @@
-# Grafana live data changelog
+# Grafana mqtt changelog
 
-- [Grafana live data changelog](#grafana-live-data-changelog)
-  - [v1.1](#v11)
-  - [v1.0](#v10)
+- [Grafana mqtt changelog](#grafana-mqtt-changelog)
+  - [v0.2](#v02)
+  - [v0.1](#v01)
+  - [v0](#v0)
 
 ## v0.2
 
