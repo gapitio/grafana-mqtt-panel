@@ -11,8 +11,8 @@
     "license": "MIT",
     "dependencies": {
         "angular": "^1.7.9",
-        "flot": "^3.2.9",
-        "highcharts": "^7.2.1",
+        "flot": "^4.2.0",
+        "highcharts": "^8.0.4",
         "jquery": "^3.4.1",
         "jquery.flot": "^0.8.3",
         "lodash": "^4.17.15",
@@ -22,9 +22,9 @@
     "devDependencies": {
         "@grafana/toolkit": "next",
         "@grafana/ui": "latest",
-        "@types/angular": "^1.6.56",
+        "@types/angular": "^1.6.57",
         "@types/flot": "^0.0.31",
         "@types/grafana": "github:CorpGlory/types-grafana",
-        "@types/lodash": "4.14.138"
+        "@types/lodash": "4.14.149"
     }
 }
