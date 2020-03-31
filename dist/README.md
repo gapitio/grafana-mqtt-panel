@@ -1,6 +1,6 @@
-# Grafana MQTT panel
+# Hrafana MQTT panel
 
-- [Grafana MQTT panel](#grafana-mqtt-panel)
+- [Hrafana MQTT panel](#hrafana-mqtt-panel)
   - [MQTT panel](#mqtt-panel)
   - [Build project](#build-project)
 
