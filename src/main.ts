@@ -33,8 +33,9 @@ class Main extends MetricsPanelCtrl {
 
         this.format = 'locale';
         const PANEL_DEFAULT = {
+            format: 'none',
             mqtt: {
-                mode: 'Recieve',
+                mode: 'Receive',
                 login: {
                     hostname: '',
                     port: 9001
