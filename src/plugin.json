@@ -10,8 +10,8 @@
             "url": "https://gapit.io"
         },
         "keywords": ["mqtt", "panel"],
-        "version": "0.2.0",
-        "updated": "0.2.0"
+        "version": "0.3.0",
+        "updated": "0.3.0"
     },
 
     "dependencies": {
