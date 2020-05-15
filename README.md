@@ -11,6 +11,10 @@
 ## MQTT panel
 
 This plugin communicates with a MQTT broker through websocket to transmit and receive data.
+
+The panels have 2 types of design, text and gauge.
+NB! The unit is not displayed in gauge. Preferred unit for gauge is "short"
+
 It's used to get real time data from equipment, but can be used with anything that can send data to an MQTT broker.
 
 ### Some use cases
