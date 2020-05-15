@@ -1,3 +1,5 @@
+// TODO: Fix some numbers shifts the yAxis
+
 import { MetricsPanelCtrl } from 'grafana/app/plugins/sdk';
 import * as _ from 'lodash';
 import kbn from 'grafana/app/core/utils/kbn';
@@ -52,7 +54,8 @@ class Main extends MetricsPanelCtrl {
             },
             design: {
                 type: 'Text'
-            }
+            },
+            gaugeRange: [0, 100]
         };
 
         _.defaults(this.panel, PANEL_DEFAULT);
@@ -75,6 +78,7 @@ class Main extends MetricsPanelCtrl {
     initialize() {
         this.updateMQTTClient();
         this.createGauge();
+        this.updateGaugeRange();
     }
 
     createGauge() {
@@ -155,14 +159,14 @@ class Main extends MetricsPanelCtrl {
                         },
                         {
                             yAxis: {
-                                min: 0,
-                                max: 50,
                                 title: {
                                     text: null
                                 },
                                 labels: {
                                     enabled: true
-                                }
+                                },
+                                startOnTick: false,
+                                endOnTick: false
                             },
 
                             series: [
@@ -177,8 +181,13 @@ class Main extends MetricsPanelCtrl {
                         }
                     )
                 );
+                this.updateGaugeRange();
             }
         }
+    }
+
+    updateGaugeRange() {
+        this.gauge.yAxis[0].setExtremes(...this.panel.gaugeRange);
     }
 
     getVariableValue(variable: string) {
