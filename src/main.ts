@@ -28,6 +28,7 @@ class Main extends MetricsPanelCtrl {
         this.$rootScope = $rootScope;
         this.subscribed = [];
         this.value = 'Waiting for response';
+        this.formattedValue = 'Waiting for response';
         this.mqttConnection = {
             message: '',
             status: 'Connect'
