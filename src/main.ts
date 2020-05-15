@@ -1,3 +1,5 @@
+// TODO: Fix some numbers shifts the yAxis
+
 import { MetricsPanelCtrl } from 'grafana/app/plugins/sdk';
 import * as _ from 'lodash';
 import kbn from 'grafana/app/core/utils/kbn';
@@ -12,7 +14,9 @@ class Main extends MetricsPanelCtrl {
     static templateUrl = 'module.html';
     $rootScope: any;
     unitFormats: any;
+    formattedValue: any;
     value: any;
+    unit: any;
     data: any;
     mqttClient: any;
     subscribed: any;
@@ -26,6 +30,7 @@ class Main extends MetricsPanelCtrl {
         this.$rootScope = $rootScope;
         this.subscribed = [];
         this.value = 'Waiting for response';
+        this.formattedValue = 'Waiting for response';
         this.mqttConnection = {
             message: '',
             status: 'Connect'
@@ -33,8 +38,10 @@ class Main extends MetricsPanelCtrl {
 
         this.format = 'locale';
         const PANEL_DEFAULT = {
+            decimals: 2,
+            format: 'none',
             mqtt: {
-                mode: 'Recieve',
+                mode: 'Receive',
                 login: {
                     hostname: '',
                     port: 9001
@@ -47,7 +54,8 @@ class Main extends MetricsPanelCtrl {
             },
             design: {
                 type: 'Text'
-            }
+            },
+            gaugeRange: [0, 100]
         };
 
         _.defaults(this.panel, PANEL_DEFAULT);
@@ -70,104 +78,116 @@ class Main extends MetricsPanelCtrl {
     initialize() {
         this.updateMQTTClient();
         this.createGauge();
+        this.updateGaugeRange();
     }
 
     createGauge() {
-        if (!this.gauge) {
-            const PANEL_ELT = document.getElementById(`panel-${this.panel.id}`);
-            if (PANEL_ELT) {
-                const GAUGE_ELT: any = PANEL_ELT.getElementsByClassName(
-                    'mqtt-value-gauge'
-                )[0];
-                if (GAUGE_ELT) {
-                    const HIGHCHARTS: any = Highcharts;
+        const PANEL_ELT = document.getElementById(`panel-${this.panel.id}`);
+        if (PANEL_ELT) {
+            const GAUGE_ELT: any = PANEL_ELT.getElementsByClassName(
+                'mqtt-value-gauge'
+            )[0];
+            if (GAUGE_ELT) {
+                const HIGHCHARTS: any = Highcharts;
 
-                    this.gauge = HIGHCHARTS.chart(
-                        HIGHCHARTS.merge(
-                            {
-                                chart: {
-                                    renderTo: GAUGE_ELT,
-                                    type: 'solidgauge',
-                                    backgroundColor: 'transparent'
-                                },
+                this.gauge = HIGHCHARTS.chart(
+                    HIGHCHARTS.merge(
+                        {
+                            chart: {
+                                renderTo: GAUGE_ELT,
+                                type: 'solidgauge',
+                                backgroundColor: 'transparent'
+                            },
 
-                                title: null,
+                            title: null,
 
-                                exporting: {
-                                    enabled: false
-                                },
+                            exporting: {
+                                enabled: false
+                            },
 
-                                tooltip: {
-                                    enabled: false
-                                },
+                            tooltip: {
+                                enabled: false
+                            },
 
-                                // the value axis
-                                yAxis: {
-                                    stops: [
-                                        [0.1, '#55BF3B'], // green
-                                        [0.5, '#DDDF0D'], // yellow
-                                        [0.9, '#DF5353'] // red
-                                    ],
-                                    lineWidth: 0,
-                                    tickWidth: 0,
-                                    minorTickInterval: null,
-                                    tickAmount: 2,
-                                    labels: {
-                                        y: 16
-                                    }
-                                },
-
-                                credits: {
-                                    enabled: false
-                                },
-
-                                pane: {
-                                    background: [
-                                        {
-                                            borderWidth: 0,
-                                            backgroundColor: 'transparent'
-                                        }
-                                    ]
-                                },
-
-                                plotOptions: {
-                                    solidgauge: {
-                                        dataLabels: {
-                                            y: -20,
-                                            borderWidth: 0,
-                                            useHTML: true
-                                        }
-                                    }
+                            // the value axis
+                            yAxis: {
+                                stops: [
+                                    [0.1, '#55BF3B'], // green
+                                    [0.5, '#DDDF0D'], // yellow
+                                    [0.9, '#DF5353'] // red
+                                ],
+                                lineWidth: 0,
+                                tickWidth: 0,
+                                minorTickInterval: null,
+                                tickAmount: 2,
+                                labels: {
+                                    y: 16
                                 }
                             },
-                            {
-                                yAxis: {
-                                    min: 0,
-                                    max: 50,
-                                    title: {
-                                        text: null
-                                    },
-                                    labels: {
-                                        enabled: false
-                                    }
-                                },
 
-                                series: [
+                            credits: {
+                                enabled: false
+                            },
+
+                            pane: {
+                                center: ['50%', '75%'],
+                                size: '140%',
+                                startAngle: -90,
+                                endAngle: 90,
+                                background: [
                                     {
-                                        name: null,
-                                        data: [0],
-                                        dataLabels: {
-                                            format:
-                                                '<div style="text-align:center"><span>{y:.1f}</span><br/></div>'
-                                        }
+                                        borderWidth: 1,
+                                        backgroundColor:
+                                            'rgba(100, 100, 100, 0.1)',
+                                        borderColor: 'rgba(130, 130, 130, 0.4)',
+                                        innerRadius: '60%',
+                                        outerRadius: '100%',
+                                        shape: 'arc'
                                     }
                                 ]
+                            },
+
+                            plotOptions: {
+                                solidgauge: {
+                                    dataLabels: {
+                                        y: -30,
+                                        borderWidth: 0,
+                                        useHTML: true
+                                    }
+                                }
                             }
-                        )
-                    );
-                }
+                        },
+                        {
+                            yAxis: {
+                                title: {
+                                    text: null
+                                },
+                                labels: {
+                                    enabled: true
+                                },
+                                startOnTick: false,
+                                endOnTick: false
+                            },
+
+                            series: [
+                                {
+                                    name: null,
+                                    data: [0],
+                                    dataLabels: {
+                                        format: `<div style="text-align:center"><span>{y:.${this.panel.decimals}f}</span><br/></div>`
+                                    }
+                                }
+                            ]
+                        }
+                    )
+                );
+                this.updateGaugeRange();
             }
         }
+    }
+
+    updateGaugeRange() {
+        this.gauge.yAxis[0].setExtremes(...this.panel.gaugeRange);
     }
 
     getVariableValue(variable: string) {
@@ -190,22 +210,11 @@ class Main extends MetricsPanelCtrl {
     }
 
     updateMQTTClient() {
-        // console.log(this.templateSrv.variables.filter((x: any) => x.name === 'test')[0]);
-        // console.log(this.templateSrv.variables.filter((x: any) => x.name === 'test')[0].current.value);
         const PANEL_ELT = document.getElementById(`panel-${this.panel.id}`);
 
         if (this.mqttClient) {
             this.mqttClient.end();
         }
-
-        const MQTT_CONVERTED_DICT = {
-            hostname: this.getVariableValue(this.panel.mqtt.login.hostname),
-            port: this.getVariableValue(this.panel.mqtt.login.port),
-            username: this.getVariableValue(this.panel.mqtt.login.username),
-            password: this.getVariableValue(this.panel.mqtt.login.password),
-            topic: this.getVariableValue(this.panel.mqtt.topic)
-        };
-        console.log(MQTT_CONVERTED_DICT);
 
         const MQTT_LOGIN_DICT = {
             hostname: this.panel.mqtt.login.hostname,
@@ -312,23 +321,26 @@ class Main extends MetricsPanelCtrl {
 
             this.mqttClient.on('message', (topic: any, message: any) => {
                 this.data = message.toString();
-                this.value = this.formatValue(this.data);
+                this.formattedValue = this.formatValue(this.data);
+                [this.value, this.unit] = this.formattedValue.split(' ');
+
                 if (this.panel.design.type === 'Text' && PANEL_ELT) {
                     const VALUE_ELTS = PANEL_ELT.getElementsByClassName(
                         'mqtt-value'
                     );
                     if (VALUE_ELTS && VALUE_ELTS.length > 0) {
-                        VALUE_ELTS[0].textContent = this.value;
+                        VALUE_ELTS[0].textContent = this.formattedValue;
                     }
                 }
-                if (!isNaN(this.value)) {
+
+                if (!isNaN(this.data)) {
                     if (
                         this.panel.design.type === 'Gauge' &&
                         this.gauge &&
                         this.gauge.series
                     ) {
                         this.gauge.series[0].points[0].update(
-                            parseFloat(this.value)
+                            parseFloat(this.data)
                         );
                     }
                 }

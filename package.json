@@ -11,20 +11,23 @@
     "license": "MIT",
     "dependencies": {
         "angular": "^1.7.9",
-        "flot": "^4.2.0",
-        "highcharts": "^8.0.4",
-        "jquery": "^3.4.1",
+        "flot": "^4.2.1",
+        "highcharts": "^8.1.0",
+        "jquery": "^3.5.1",
         "jquery.flot": "^0.8.3",
         "lodash": "^4.17.15",
-        "mqtt": "^3.0.0",
+        "mqtt": "^4.0.1",
         "paho-mqtt": "^1.1.0"
     },
     "devDependencies": {
-        "@grafana/toolkit": "next",
-        "@grafana/ui": "latest",
-        "@types/angular": "^1.6.57",
+        "@babel/plugin-proposal-numeric-separator": "^7.8.3",
+        "@babel/compat-data": "~7.9.6",
+        "@grafana/toolkit": "^6.7.3",
+        "@grafana/ui": "^6.7.3",
+        "@types/angular": "^1.7.0",
         "@types/flot": "^0.0.31",
         "@types/grafana": "github:CorpGlory/types-grafana",
-        "@types/lodash": "4.14.149"
-    }
+        "@types/lodash": "4.14.150"
+    },
+    "main": "dist/module.js"
 }
