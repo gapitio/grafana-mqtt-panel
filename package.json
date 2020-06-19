@@ -1,6 +1,6 @@
 {
     "name": "gapit-mqtt-panel",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "description": "Publish and recieve data by MQTT",
     "scripts": {
         "build": "grafana-toolkit plugin:build",
