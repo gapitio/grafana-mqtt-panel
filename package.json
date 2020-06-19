@@ -10,24 +10,24 @@
     },
     "license": "MIT",
     "dependencies": {
-        "angular": "^1.7.9",
+        "angular": "^1.8.0",
         "flot": "^4.2.1",
-        "highcharts": "^8.1.0",
+        "highcharts": "^8.1.2",
         "jquery": "^3.5.1",
         "jquery.flot": "^0.8.3",
         "lodash": "^4.17.15",
-        "mqtt": "^4.0.1",
+        "mqtt": "^4.1.0",
         "paho-mqtt": "^1.1.0"
     },
     "devDependencies": {
-        "@babel/plugin-proposal-numeric-separator": "^7.8.3",
-        "@babel/compat-data": "~7.9.6",
-        "@grafana/toolkit": "^6.7.3",
-        "@grafana/ui": "^6.7.3",
+        "@babel/plugin-proposal-numeric-separator": "^7.10.1",
+        "@babel/compat-data": "~7.10.1",
+        "@grafana/toolkit": "^7.0.3",
+        "@grafana/ui": "^7.0.3",
         "@types/angular": "^1.7.0",
         "@types/flot": "^0.0.31",
         "@types/grafana": "github:CorpGlory/types-grafana",
-        "@types/lodash": "4.14.150"
+        "@types/lodash": "4.14.155"
     },
     "main": "dist/module.js"
 }
