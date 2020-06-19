@@ -1,0 +1,21 @@
+{
+    "type": "panel",
+    "name": "MQTT",
+    "id": "gapit-mqtt-panel",
+
+    "info": {
+        "description": "MQTT",
+        "author": {
+            "name": "Gapit",
+            "url": "https://github.com/gapitio/grafana-mqtt-panel"
+        },
+        "keywords": ["mqtt", "panel"],
+        "version": "0.3.0",
+        "updated": "2020-05-15"
+    },
+
+    "dependencies": {
+        "grafanaVersion": "4.6",
+        "plugins": []
+    }
+}

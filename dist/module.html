@@ -1,0 +1,12 @@
+<div class="mqtt-panel">
+    <div class="recieve-container" ng-if="ctrl.panel.mqtt.mode == 'Receive'">
+        <label ng-if="ctrl.panel.design.type == 'Text'" class="mqtt-value">{{ctrl.formattedValue}}</label><br>
+        <div ng-if="ctrl.panel.design.type == 'Gauge'" ng-init="ctrl.createGauge()" class="mqtt-value-gauge"></div>
+    </div>
+    <div class="publish-container" ng-if="ctrl.panel.mqtt.mode == 'Publish'">
+        <input type="text" ng-model="ctrl.panel.mqtt.publish.value" ng-keyup="$event.keyCode == 13 ? ctrl.onPublish() : null" />
+        <br><br>
+        <button ng-click="ctrl.onPublish()">Publish</button>
+    </div><br>
+    <label class="mqtt-connection" ng-if="ctrl.panel.mqtt.show">{{ctrl.mqttConnection.message}}</label>
+</div>
