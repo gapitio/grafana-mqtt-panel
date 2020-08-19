@@ -1,12 +1,18 @@
 # Grafana mqtt changelog
 
 - [Grafana mqtt changelog](#grafana-mqtt-changelog)
+  - [v0.3.3](#v033)
   - [v0.3.2](#v032)
   - [v0.3.1](#v031)
   - [v0.3.0](#v030)
   - [v0.2.0](#v020)
   - [v0.1.0](#v010)
   - [v0.0.0](#v000)
+
+## v0.3.3
+
+- Fix wrong url in readme (change screenshot with dist/img)
+- Change grafana version dependency to 6.x.x
 
 ## v0.3.2
 
