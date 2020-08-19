@@ -11,7 +11,11 @@
         },
         "keywords": ["mqtt", "panel"],
         "version": "0.3.1",
-        "updated": "2020-06-19"
+        "updated": "2020-06-19",
+        "logos": {
+            "small": "img/logo.svg",
+            "large": "img/logo.svg"
+        }
     },
 
     "dependencies": {
