@@ -15,7 +15,17 @@
         "logos": {
             "small": "img/logo.svg",
             "large": "img/logo.svg"
-        }
+        },
+        "screenshots": [
+            {
+                "name": "Editor preview",
+                "path": "/img/editor-preview.png"
+            },
+            {
+                "name": "Dashboard preview",
+                "path": "/img/dashboard-preview.png"
+            }
+        ]
     },
 
     "dependencies": {
