@@ -10,8 +10,8 @@
             "url": "https://github.com/gapitio/grafana-mqtt-panel"
         },
         "keywords": ["mqtt", "panel"],
-        "version": "0.3.1",
-        "updated": "2020-06-19",
+        "version": "0.3.2",
+        "updated": "2020-08-19",
         "logos": {
             "small": "img/logo.svg",
             "large": "img/logo.svg"
