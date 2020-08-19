@@ -17,8 +17,8 @@ NB! The unit is not displayed in gauge. Preferred unit for gauge is "short"
 
 It's used to get real time data from equipment, but can be used with anything that can send data to an MQTT broker.
 
-![Dashboard preview](screenshots/dashboard-preview.png)
-![Editor preview](screenshots/editor-preview.png)
+![Dashboard preview](https://raw.githubusercontent.com/gapitio/grafana-mqtt-panel/master/screenshots/dashboard-preview.png)
+![Editor preview](https://raw.githubusercontent.com/gapitio/grafana-mqtt-panel/master/screenshots/editor-preview.png)
 
 ### Some use cases
 
