@@ -1,3 +1,5 @@
+No longer maintained
+
 # Grafana MQTT panel
 
 - [Grafana MQTT panel](#grafana-mqtt-panel)
